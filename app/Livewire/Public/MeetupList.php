@@ -15,6 +15,6 @@ class MeetupList extends Component
         $meetups = Meetup::latest()->paginate(10); // Fetch latest meetups, paginated
         return view('livewire.public.meetup-list', [
             'meetups' => $meetups,
-        ])->layout('components.layouts.app'); // Use the main app layout
+        ])->layout('components.layouts.site'); // Use the main app layout
     }
 }
