@@ -29,7 +29,7 @@ class MeetupManagementTest extends TestCase
         return User::factory()->create(['is_admin' => false]);
     }
 
-    /** @test */
+    
     public function non_admins_cannot_access_admin_meetups_page()
     {
         $user = $this->createUser();
@@ -39,7 +39,7 @@ class MeetupManagementTest extends TestCase
             ->assertForbidden();
     }
 
-    /** @test */
+    
     public function admins_can_access_admin_meetups_page()
     {
         $admin = $this->createAdminUser();
@@ -50,7 +50,7 @@ class MeetupManagementTest extends TestCase
             ->assertSeeLivewire(ManageMeetups::class);
     }
 
-    /** @test */
+    
     public function admin_can_see_list_of_meetups()
     {
         $admin = $this->createAdminUser();
@@ -61,7 +61,7 @@ class MeetupManagementTest extends TestCase
             ->assertSee(Meetup::first()->title);
     }
 
-    /** @test */
+    
     public function admin_can_create_a_meetup()
     {
         $admin = $this->createAdminUser();
@@ -93,7 +93,7 @@ class MeetupManagementTest extends TestCase
         $this->assertEquals($admin->id, $meetup->user_id);
     }
 
-    /** @test */
+    
     public function admin_can_edit_a_meetup()
     {
         $admin = $this->createAdminUser();
@@ -131,7 +131,7 @@ class MeetupManagementTest extends TestCase
         $this->assertEquals(1, $updatedMeetup->is_featured);
     }
 
-    /** @test */
+    
     public function admin_can_delete_a_meetup()
     {
         $admin = $this->createAdminUser();
@@ -144,7 +144,7 @@ class MeetupManagementTest extends TestCase
         $this->assertDatabaseMissing('meetups', ['id' => $meetup->id]);
     }
 
-    /** @test */
+    
     public function validation_fails_for_invalid_data_on_create()
     {
         $admin = $this->createAdminUser();
@@ -168,7 +168,7 @@ class MeetupManagementTest extends TestCase
             ]);
     }
 
-     /** @test */
+     
     public function validation_fails_for_invalid_data_on_edit()
     {
         $admin = $this->createAdminUser();

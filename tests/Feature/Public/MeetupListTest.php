@@ -13,7 +13,7 @@ class MeetupListTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    
     public function public_meetups_page_can_be_accessed()
     {
         $this->get(route('meetups.public.index'))
@@ -21,7 +21,7 @@ class MeetupListTest extends TestCase
             ->assertSeeLivewire(MeetupList::class);
     }
 
-    /** @test */
+    
     public function it_displays_a_list_of_meetups()
     {
         $user = User::factory()->create(); // Needed for meetup factory
@@ -31,14 +31,14 @@ class MeetupListTest extends TestCase
             ->assertSee(Meetup::first()->title);
     }
 
-    /** @test */
+    
     public function it_displays_a_message_when_no_meetups_are_available()
     {
         Livewire::test(MeetupList::class)
             ->assertSee('No meetups scheduled at the moment.');
     }
 
-    /** @test */
+    
     public function it_paginates_meetups()
     {
         $user = User::factory()->create();
