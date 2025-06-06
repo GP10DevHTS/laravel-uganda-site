@@ -47,6 +47,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function meetups(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Meetup::class);
+    }
+
     /**
      * Get the user's initials
      */

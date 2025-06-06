@@ -21,4 +21,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
 });
 
+use App\Livewire\Admin\Meetups\ManageMeetups;
+
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('meetups', ManageMeetups::class)->name('meetups.index');
+    // We can add more routes for create/edit later if not handled solely by Livewire component state
+});
+
+use App\Livewire\Public\MeetupList;
+
+Route::get('meetups', MeetupList::class)->name('meetups.public.index');
+
 require __DIR__.'/auth.php';
