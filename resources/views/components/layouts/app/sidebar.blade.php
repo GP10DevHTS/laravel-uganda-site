@@ -14,11 +14,15 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    @if(auth()->user()->is_admin)
+                    <flux:navlist.item icon="calendar-days" :href="route('admin.meetups.index')" :current="request()->routeIs('admin.meetups.index')" wire:navigate>{{ __('Manage Meetups') }}</flux:navlist.item>
+                    @endif
                 </flux:navlist.group>
             </flux:navlist>
 
             <flux:spacer />
 
+            @auth
             <flux:navlist variant="outline">
                 <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
                 {{ __('Repository') }}
@@ -73,6 +77,7 @@
                     </form>
                 </flux:menu>
             </flux:dropdown>
+            @endauth
         </flux:sidebar>
 
         <!-- Mobile User Menu -->
@@ -81,6 +86,7 @@
 
             <flux:spacer />
 
+            @auth
             <flux:dropdown position="top" align="end">
                 <flux:profile
                     :initials="auth()->user()->initials()"
@@ -123,6 +129,7 @@
                     </form>
                 </flux:menu>
             </flux:dropdown>
+            @endauth
         </flux:header>
 
         {{ $slot }}
