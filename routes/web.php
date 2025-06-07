@@ -22,9 +22,11 @@ Route::middleware(['auth'])->group(function () {
 });
 
 use App\Livewire\Admin\Meetups\ManageMeetups;
+use App\Livewire\Admin\Users\ManageUsers; // Add this
 
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('meetups', ManageMeetups::class)->name('meetups.index');
+    Route::get('users', ManageUsers::class)->name('users.index'); // New route for managing users
     // We can add more routes for create/edit later if not handled solely by Livewire component state
 });
 

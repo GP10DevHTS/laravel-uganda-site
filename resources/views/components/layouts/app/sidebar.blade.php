@@ -7,18 +7,20 @@
         <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
-            <a href="{{ route('home') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
+            <a href="{{ route('dashboard') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
                 <x-app-logo />
             </a>
 
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-            @auth
                     @if(auth()->user()->is_admin)
                     <flux:navlist.item icon="calendar-days" :href="route('admin.meetups.index')" :current="request()->routeIs('admin.meetups.index')" wire:navigate>{{ __('Manage Meetups') }}</flux:navlist.item>
+                    <flux:navlist.item :href="route('admin.users.index')" :current="request()->routeIs('admin.users.index')" wire:navigate>
+                        <svg class="h-6 w-6 shrink-0 [:where(&)]:size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/> </svg>
+                        <span>Manage Users</span>
+                    </flux:navlist.item>
                     @endif
-                    @endauth
                 </flux:navlist.group>
             </flux:navlist>
 

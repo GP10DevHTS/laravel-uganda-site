@@ -63,4 +63,16 @@ class User extends Authenticatable
             ->map(fn ($word) => Str::substr($word, 0, 1))
             ->implode('');
     }
+
+    /**
+     * Scope a query to only include users matching a given search term.
+     */
+    public function scopeSearch($query, $term)
+    {
+        $term = "%{$term}%";
+        $query->where(function ($query) use ($term) {
+            $query->where('name', 'like', $term)
+                  ->orWhere('email', 'like', $term);
+        });
+    }
 }
