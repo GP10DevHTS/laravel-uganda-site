@@ -14,6 +14,8 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+@auth
+
                     @if(auth()->user()->is_admin)
                     <flux:navlist.item icon="calendar-days" :href="route('admin.meetups.index')" :current="request()->routeIs('admin.meetups.index')" wire:navigate>{{ __('Manage Meetups') }}</flux:navlist.item>
                     <flux:navlist.item :href="route('admin.users.index')" :current="request()->routeIs('admin.users.index')" wire:navigate>
@@ -21,6 +23,8 @@
                         <span>Manage Users</span>
                     </flux:navlist.item>
                     @endif
+@endauth
+
                 </flux:navlist.group>
             </flux:navlist>
 
